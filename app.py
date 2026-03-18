@@ -1454,4 +1454,4 @@ else:
                 st.error(t("parse_error").format(error=str(e)))
 
 # --- Footer ---
-render_footer(libraries=["recipe-scrapers", "ingredient-parser-nlp"])
+render_footer(libraries=["recipe-scrapers", "ingredient-parser-nlp"], repo_name="kf-meal-rescue")
