@@ -10,9 +10,33 @@ st.set_page_config(
 
 from components.header import render_header
 from components.footer import render_footer
-from components.i18n import t
+from components.i18n import t, get_lang
 
 import re
+
+# --- Ingredient presets (checkbox-based selection) ---
+INGREDIENT_PRESETS = {
+    "meat": {
+        "emoji": "\U0001F969",
+        "items_ja": ["鶏もも肉", "鶏むね肉", "豚バラ", "豚ロース", "牛切り落とし", "ひき肉", "ベーコン", "ウインナー"],
+        "items_en": ["Chicken thigh", "Chicken breast", "Pork belly", "Pork loin", "Beef slices", "Ground meat", "Bacon", "Sausage"],
+    },
+    "seafood": {
+        "emoji": "\U0001F41F",
+        "items_ja": ["鮭", "サバ", "エビ", "ツナ缶", "イカ", "アサリ", "タラ", "しらす"],
+        "items_en": ["Salmon", "Mackerel", "Shrimp", "Canned tuna", "Squid", "Clams", "Cod", "Whitebait"],
+    },
+    "vegetable": {
+        "emoji": "\U0001F96C",
+        "items_ja": ["にんじん", "たまねぎ", "じゃがいも", "キャベツ", "トマト", "ほうれん草", "大根", "もやし", "ピーマン", "なす", "きのこ", "ブロッコリー"],
+        "items_en": ["Carrot", "Onion", "Potato", "Cabbage", "Tomato", "Spinach", "Daikon", "Bean sprouts", "Bell pepper", "Eggplant", "Mushroom", "Broccoli"],
+    },
+    "other": {
+        "emoji": "\U0001F95A",
+        "items_ja": ["卵", "豆腐", "牛乳", "チーズ", "油揚げ", "こんにゃく", "パスタ", "うどん", "ご飯"],
+        "items_en": ["Egg", "Tofu", "Milk", "Cheese", "Fried tofu", "Konjac", "Pasta", "Udon", "Rice"],
+    },
+}
 
 # --- Header ---
 render_header()
@@ -205,18 +229,26 @@ if mode == t("mode_search"):
     st.subheader(t("input_ingredients_title"))
     st.caption(t("input_ingredients_help"))
 
-    ingredients_text = st.text_area(
-        t("ingredients_label"),
-        height=120,
-        placeholder=t("ingredients_placeholder"),
-    )
+    selected_ingredients = []
+
+    for cat_key, cat_data in INGREDIENT_PRESETS.items():
+        cat_name = t(f"cat_{cat_key}")
+        with st.expander(f"{cat_data['emoji']} {cat_name}"):
+            items = cat_data["items_ja"] if get_lang() == "ja" else cat_data["items_en"]
+            for item in items:
+                if st.checkbox(item, key=f"ing_{cat_key}_{item}"):
+                    selected_ingredients.append(item)
+
+    # 自由入力
+    custom = st.text_input(t("custom_ingredients"), placeholder=t("custom_placeholder"))
+    if custom:
+        selected_ingredients.extend([x.strip() for x in custom.replace("\u3001", ",").split(",") if x.strip()])
+
+    if selected_ingredients:
+        st.caption(t("selected_count").format(count=len(selected_ingredients)) + ": " + ", ".join(selected_ingredients))
 
     if st.button(t("search_button"), type="primary"):
-        ingredients = [
-            ing.strip()
-            for ing in re.split(r"[,、\n\r]+", ingredients_text)
-            if ing.strip()
-        ]
+        ingredients = selected_ingredients
 
         if not ingredients:
             st.warning(t("no_ingredients"))
