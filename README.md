@@ -1,3 +1,14 @@
+---
+title: kf-meal-rescue
+emoji: 🚀
+colorFrom: green
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.44.1
+app_file: app.py
+pinned: false
+---
+
 # KF-MealRescue
 
 > 手持ちの食材からレシピを見つけて、毎日の献立決めをラクにする。
