@@ -77,5 +77,6 @@
   "bundle_meat_lover": "お肉メインセット",
   "bundle_healthy_set": "ヘルシーセット",
   "bundle_japanese_basic": "和食の基本セット",
-  "bundle_applied": "セット適用中: {items}"
+  "bundle_applied": "セット適用中: {items}",
+  "report_issue": "不具合を報告"
 }

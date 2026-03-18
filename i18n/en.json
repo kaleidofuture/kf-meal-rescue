@@ -77,5 +77,6 @@
   "bundle_meat_lover": "Meat Lover Set",
   "bundle_healthy_set": "Healthy Set",
   "bundle_japanese_basic": "Japanese Basics",
-  "bundle_applied": "Set applied: {items}"
+  "bundle_applied": "Set applied: {items}",
+  "report_issue": "Report an issue"
 }
