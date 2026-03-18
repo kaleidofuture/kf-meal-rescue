@@ -34,5 +34,12 @@
   "servings": "分量",
   "ingredients_list": "材料",
   "instructions_label": "手順",
-  "parse_error": "レシピの解析に失敗しました: {error}"
+  "parse_error": "レシピの解析に失敗しました: {error}",
+  "cat_meat": "肉類",
+  "cat_seafood": "魚介類",
+  "cat_vegetable": "野菜",
+  "cat_other": "その他",
+  "custom_ingredients": "その他の食材",
+  "custom_placeholder": "カンマ区切りで入力",
+  "selected_count": "{count}個の食材を選択中"
 }

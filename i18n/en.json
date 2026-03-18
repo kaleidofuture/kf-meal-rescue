@@ -34,5 +34,12 @@
   "servings": "Servings",
   "ingredients_list": "Ingredients",
   "instructions_label": "Instructions",
-  "parse_error": "Failed to parse recipe: {error}"
+  "parse_error": "Failed to parse recipe: {error}",
+  "cat_meat": "Meat",
+  "cat_seafood": "Seafood",
+  "cat_vegetable": "Vegetables",
+  "cat_other": "Other",
+  "custom_ingredients": "Other ingredients",
+  "custom_placeholder": "Enter comma-separated",
+  "selected_count": "{count} ingredient(s) selected"
 }
